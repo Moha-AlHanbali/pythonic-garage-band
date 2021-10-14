@@ -2,11 +2,12 @@
 from abc import ABC, abstractmethod, abstractstaticmethod, abstractclassmethod
 
 
-bands = []
 
 class Band():
     """
-    This class defines 
+    This class defines a band and its' members and allows them to play their instrument.
+    name: str
+    members: list
     """
 
     instances = []
@@ -24,19 +25,18 @@ class Band():
     
     @abstractmethod
     def play_solos(cls):
+        """
+        This function calls band members to play their instruments.
+        """
         def play_solo(cls):
             pass
         return cls.solo_list
-
-
-    def sign_band(self):
-        if self.name not in bands:
-            bands.append(self.name)
-        else:
-            print("Band already regestered.")
     
     @classmethod
     def to_list(cls):
+        """
+        This calls created bands.
+        """
         return cls.instances
 
 
@@ -46,7 +46,11 @@ class Band():
 
 class Musician(Band):
     """
-    This class defines 
+    This class defines the role of each band member.
+    name: str
+    role: str
+    instrument: str
+    sounds: str
     """
 
     def __init__(self, name = "", role = "", instrument = "", sounds = ""):
@@ -62,9 +66,15 @@ class Musician(Band):
         return (f"{self.role} instance. Name = {self.name}")
 
     def get_instrument(self):
+        """
+        This function specifies which instrument a band member uses.
+        """
         return self.instrument
 
     def play_solo(self):
+        """
+        This tells band member to play their instrument.
+        """
         Band.solo_list.append(self.sounds)
         return self.sounds
 
@@ -72,7 +82,7 @@ class Musician(Band):
 
 class Guitarist(Musician):
     """
-    
+    This class specifies Guitarist band memeber characteristics.
     """
     def __init__(self, name = ""):
         self.name = str(name)
@@ -82,7 +92,7 @@ class Guitarist(Musician):
 
 class Bassist(Musician):
     """
-    
+    This class specifies Bassist band memeber characteristics.
     """
     def __init__(self, name = ""):
         self.name = str(name)
@@ -93,7 +103,7 @@ class Bassist(Musician):
 
 class Drummer(Musician):
     """
-    
+    This class specifies Drummer band memeber characteristics.
     """
     def __init__(self, name = ""):
         self.name = str(name)
